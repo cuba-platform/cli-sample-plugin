@@ -10,16 +10,11 @@ import com.haulmont.cuba.cli.kodein
 import org.kodein.di.generic.instance
 import java.io.IOException
 import java.io.InputStreamReader
-import java.io.PrintWriter
 import java.net.URL
 import java.nio.file.Files
 
 @Parameters(commandDescription = "Opens project in IntelliJ IDEA")
 class IdeaOpenCommand : AbstractCommand() {
-
-    private val printWriter: PrintWriter by kodein.instance()
-
-    private val workingDirectoryManager: WorkingDirectoryManager by kodein.instance()
 
     override fun preExecute() = checkProjectExistence()
 
@@ -31,8 +26,9 @@ class IdeaOpenCommand : AbstractCommand() {
 
         val hasIpr = projectStructure.path.resolve(iprFileName).let { Files.exists(it) }
         if (!hasIpr) {
-            val createIprGradle = "${workingDirectoryManager.absolutePath.resolve("gradlew")} idea"
-            val process = Runtime.getRuntime().exec(createIprGradle, emptyArray(), workingDirectoryManager.absolutePath.toFile())
+            val currentDir = projectStructure.path.toAbsolutePath()
+            val createIprGradle = "${currentDir.resolve("gradlew")} idea"
+            val process = Runtime.getRuntime().exec(createIprGradle, emptyArray(), currentDir.toFile())
             process.waitFor()
         }
 
@@ -48,11 +44,11 @@ class IdeaOpenCommand : AbstractCommand() {
                 val response = CharStreams.toString(reader)
                 val firstLine = response.trim { it <= ' ' }.split("\\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()[0]
                 if (!firstLine.startsWith("OK")) {
-                    printWriter.println("Unable to connect to the IDE. Check if the IDE is running and CUBA Plugin is installed.")
+                    fail("Unable to connect to the IDE. Check if the IDE is running and CUBA Plugin is installed.")
                 }
             }
         } catch (e: IOException) {
-            printWriter.println("Unable to connect to the IDE. Check if the IDE is running and CUBA Plugin is installed.")
+            fail("Unable to connect to the IDE. Check if the IDE is running and CUBA Plugin is installed.")
         }
     }
 }
