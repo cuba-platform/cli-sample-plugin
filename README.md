@@ -6,3 +6,14 @@
 Simple plugin that adds `idea` command to [CUBA CLI](https://github.com/cuba-platform/cuba-cli), allowing user to open project in IntelliJ IDEA.
 
 Read about plugin development [here](https://github.com/cuba-platform/cuba-cli/wiki/Plugin-Development).
+
+## Installation
+
+1. Copy .jar file into `~/.haulmont/cli/plugins/` directory.
+1. Start `cuba-cli`
+
+It will print loaded plugins:
+```
+cuba:~/$ cuba-cli 
+Loaded plugin com.haulmont.cli.tutorial.DemoPlugin
+```
