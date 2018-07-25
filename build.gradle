@@ -1,50 +1,37 @@
 buildscript {
-    ext.kotlin_version = '1.2.41'
+    ext.kotlin_version = '1.2.50'
 
     repositories {
         mavenCentral()
-
-        maven {
-            credentials {
-                username System.getenv('HAULMONT_REPOSITORY_USER') ?: 'cuba'
-                password System.getenv('HAULMONT_REPOSITORY_PASSWORD') ?: 'cuba123'
-            }
-            url System.getenv('HAULMONT_REPOSITORY_URL') ?: 'https://repo.cuba-platform.com/content/groups/work'
-        }
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
-group 'com.haulmont'
-version '1.0-SNAPSHOT'
+group 'com.haulmont.cuba.cli'
+version '1.0.0'
 
-def moduleName = "cli.plugin.tutorial"
+def moduleName = "com.haulmont.cuba.cli.ideopener"
 
 apply plugin: 'kotlin'
 apply plugin: 'maven'
-apply plugin: 'application'
 
 sourceCompatibility = 10
 targetCompatibility = 10
 
 repositories {
-    mavenCentral()
+    jcenter()
     mavenLocal()
-
-    maven {
-        credentials {
-            username System.getenv('HAULMONT_REPOSITORY_USER') ?: 'cuba'
-            password System.getenv('HAULMONT_REPOSITORY_PASSWORD') ?: 'cuba123'
-        }
-        url System.getenv('HAULMONT_REPOSITORY_URL') ?: 'https://repo.cuba-platform.com/content/groups/work'
+    
+    maven { 
+        url "https://dl.bintray.com/cuba-platform/main" 
     }
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation "com.haulmont.cuba.cli:cuba-cli:1.0-SNAPSHOT"
+    implementation "com.haulmont.cuba.cli:cuba-cli:1.0.0"
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 

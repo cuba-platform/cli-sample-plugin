@@ -1,6 +1,6 @@
 import com.haulmont.cuba.cli.CliPlugin;
 
-module cli.plugin.tutorial {
+module com.haulmont.cuba.cli.ideopener {
     requires java.base;
     requires kotlin.stdlib;
     requires kotlin.reflect;
