@@ -29,6 +29,17 @@ repositories {
     }
 }
 
+task sourceJar(type: Jar) {
+    from file('src/main/java')
+    from file('src/main/kotlin')
+    from file('src/main/resources')
+    classifier = 'sources'
+}
+
+artifacts {
+    archives sourceJar
+}
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "com.haulmont.cuba.cli:cuba-cli:1.0.0"
