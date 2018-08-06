@@ -14,23 +14,17 @@
  * limitations under the License.
  */
 
-import com.haulmont.cuba.cli.CliPlugin;
+package com.haulmont.cli.tutorial
 
-module com.haulmont.cuba.cli.ideopener {
-    requires java.base;
-    requires kotlin.stdlib;
-    requires kotlin.reflect;
+import com.google.common.eventbus.Subscribe
+import com.haulmont.cuba.cli.CliPlugin
+import com.haulmont.cuba.cli.event.InitPluginEvent
 
-    requires jcommander;
-
-    requires com.haulmont.cuba.cli;
-    requires com.google.common;
-    requires kodein.di.core.jvm;
-    requires kodein.di.generic.jvm;
-    requires practicalxml;
-    
-    opens com.haulmont.cli.tutorial;
-    exports com.haulmont.cli.tutorial;
-
-    provides CliPlugin with com.haulmont.cli.tutorial.IdeaOpenerPlugin;
+class IdeaOpenerPlugin : CliPlugin {
+    @Subscribe
+    fun onInit(event: InitPluginEvent) {
+        event.commandsRegistry {
+            command("idea", IdeaOpenCommand())
+        }
+    }
 }
