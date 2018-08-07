@@ -17,3 +17,6 @@ It will print loaded plugins:
 cuba:~/$ cuba-cli 
 Loaded plugin com.haulmont.cli.tutorial.IdeaOpenerPlugin
 ```
+
+## Issues
+Please use https://www.cuba-platform.com/discuss for discussion, support, and reporting problems coressponding to this sample.
