@@ -15,7 +15,7 @@ Read about plugin development [here](https://github.com/cuba-platform/cuba-cli/w
 It will print loaded plugins:
 ```
 cuba:~/$ cuba-cli 
-Loaded plugin com.haulmont.cli.tutorial.IdeaOpenerPlugin
+Loaded plugin com.haulmont.cli.tutorial.HelloWorldPlugin
 ```
 
 ## Issues

@@ -20,11 +20,14 @@ import com.google.common.eventbus.Subscribe
 import com.haulmont.cuba.cli.CliPlugin
 import com.haulmont.cuba.cli.event.InitPluginEvent
 
-class IdeaOpenerPlugin : CliPlugin {
+class HelloWorldPlugin : CliPlugin {
+    override val apiVersion: Int
+        get() = 3
+
     @Subscribe
     fun onInit(event: InitPluginEvent) {
         event.commandsRegistry {
-            command("idea", IdeaOpenCommand())
+            command("hello", HelloCommand())
         }
     }
 }

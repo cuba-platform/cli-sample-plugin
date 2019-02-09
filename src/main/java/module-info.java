@@ -16,7 +16,7 @@
 
 import com.haulmont.cuba.cli.CliPlugin;
 
-module com.haulmont.cuba.cli.ideopener {
+module com.haulmont.cuba.cli.tutorial {
     requires java.base;
     requires kotlin.stdlib;
     requires kotlin.reflect;
@@ -32,5 +32,5 @@ module com.haulmont.cuba.cli.ideopener {
     opens com.haulmont.cli.tutorial;
     exports com.haulmont.cli.tutorial;
 
-    provides CliPlugin with com.haulmont.cli.tutorial.IdeaOpenerPlugin;
+    provides CliPlugin with com.haulmont.cli.tutorial.HelloWorldPlugin;
 }
